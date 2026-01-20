@@ -269,7 +269,7 @@ use_aux_loss = True
 
 # ----------------------------- 数据 -----------------------------
 train_dataset = VaihingenDataset(
-    data_root=r'H:\Datasets\Vaihingen\ISPRS_semantic_labeling_Vaihingen\data\test_set',
+    data_root=r'H:\Datasets\Vaihingen\ISPRS_semantic_labeling_Vaihingen\data\train_set',
     transform=train_aug,
 )
 val_dataset = VaihingenDataset(
@@ -360,3 +360,4 @@ def _warmup_lambda(cur_epoch: int):
 warmup_scheduler  = LambdaLR(optimizer, lr_lambda=_warmup_lambda)
 cosine_scheduler  = CosineAnnealingLR(optimizer, T_max=max(1, max_epoch - warmup_epochs), eta_min=eta_min)
 lr_scheduler = SequentialLR(optimizer, schedulers=[warmup_scheduler, cosine_scheduler], milestones=[warmup_epochs])
+
